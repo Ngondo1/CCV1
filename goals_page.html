@@ -261,8 +261,26 @@
         }
         @media (max-width: 1100px) {
             .main-grid { grid-template-columns: 1fr; gap: 0; }
-            .side { display: none; }
-            .center { margin-top: 24px; }
+            .side {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 12px;
+                width: 100vw;
+                min-width: 0;
+                padding: 0 0 8px 0;
+                margin-bottom: 0;
+                position: static;
+                min-height: unset;
+                z-index: 1;
+            }
+            .sidebar-card {
+                min-width: 260px;
+                max-width: 90vw;
+                flex: 0 0 auto;
+                margin-bottom: 0;
+            }
+            .center { margin-top: 12px; }
         }
         @media (max-width: 700px) {
             .container, .header-inner { padding: 8px 2vw; }
@@ -270,7 +288,26 @@
             .main-grid {
                 grid-template-columns: 1fr;
                 gap: 0;
-                padding: 0 0 16px 0;
+                padding: 0 0 8px 0;
+            }
+            .side {
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 8px;
+                width: 100vw;
+                min-width: 0;
+                padding: 0 0 4px 0;
+                margin-bottom: 0;
+                position: static;
+                min-height: unset;
+                z-index: 1;
+            }
+            .sidebar-card {
+                min-width: 220px;
+                max-width: 92vw;
+                flex: 0 0 auto;
+                margin-bottom: 0;
+                font-size: 0.97em;
             }
             .card, .glass {
                 padding: 16px 6vw;
@@ -422,7 +459,7 @@
     </header>
     <div class="ticker"><span id="ticker-content"></span></div>
     <div class="main-grid">
-        <aside class="side">
+    <aside class="side" tabindex="0" aria-label="Quick Finance Info (swipe left/right on mobile)">
             <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
                 <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Market Snapshot</h3>
                 <div id="market-snapshot" style="font-size:0.98em;line-height:1.5;"></div>
