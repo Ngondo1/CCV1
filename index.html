@@ -842,18 +842,7 @@
     <div class="ticker"><span id="ticker-content"></span></div>
     <div class="main-grid">
         <aside class="side">
-            <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
-                <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Market Snapshot</h3>
-                <div id="market-snapshot" style="font-size:0.98em;line-height:1.5;"></div>
-            </div>
-            <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
-                <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Trending Global News</h3>
-                <ul id="trending-news" style="list-style:none;padding-left:0;margin:0;font-size:0.98em;line-height:1.5;"></ul>
-            </div>
-            <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
-                <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Quick Finance Facts</h3>
-                <div id="finance-fact" style="font-size:0.98em;"></div>
-            </div>
+           
             <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
                 <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Market Snapshot</h3>
                 <div id="market-snapshot" style="font-size:0.98em;line-height:1.5;"></div>
@@ -1075,9 +1064,9 @@
                     <li><b>Technical Researcher:</b> Mr. Ngondo Kimemia</li>
                     <li><b>Financial Researcher:</b> Mr. Alfred Nduati</li>
                     <li><b>Financial Researcher:</b> Mr. Mathew Ngoroge</li>
-                    <li><b>:</b> [Manager Name]</li>
+                    <li><b>:</b> Manager Name</li>
                     <li><b>Compliance Lead:</b> Mr Alfred Nduati</li>
-                    <li><b>Student Contributors:</b> [List of Students]</li>
+                    <li><b>Student Contributors:</b> List of Students</li>
                 </ul>
             </section>
             <!-- Contact Section -->
@@ -1117,6 +1106,40 @@
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
 
     <script>
+        // --- Deep Market Snapshot, News, and Finance Facts (Auto, Swipeable, Touch-Optimized) ---
+        // 1. Market Snapshot: Major indices, currencies, crypto, commodities
+        const marketSnapshotData = [
+            { name: "S&P 500", value: "5,350.23", change: "+0.42%", info: "All-time high, led by tech and healthcare." },
+            { name: "Nasdaq", value: "17,850.12", change: "+0.67%", info: "AI stocks and semiconductors drive gains." },
+            { name: "Dow Jones", value: "39,210.45", change: "-0.12%", info: "Mixed as energy lags, financials steady." },
+            { name: "FTSE 100", value: "8,120.33", change: "+0.18%", info: "UK blue chips rebound on global optimism." },
+            { name: "Nikkei 225", value: "41,200.77", change: "+0.55%", info: "Japan surges on weak yen, export strength." },
+            { name: "Bitcoin", value: "$67,800", change: "+1.9%", info: "Crypto rallies as ETF inflows continue." },
+            { name: "Gold", value: "$2,420/oz", change: "-0.3%", info: "Stable as inflation expectations ease." },
+            { name: "US 10Y Yield", value: "4.18%", change: "-0.04%", info: "Bond yields dip on Fed rate cut hopes." }
+        ];
+        // 2. Trending Global News (last 24h, finance focus)
+        const trendingNewsData = [
+            { title: "Global stocks hit record highs as inflation cools and central banks signal rate cuts.", url: "https://www.ft.com/markets", summary: "Equities surge worldwide as inflation data improves and central banks hint at easing monetary policy." },
+            { title: "Kenya's Eurobond oversubscribed, signaling renewed investor confidence in Africa.", url: "https://www.businessdailyafrica.com/markets", summary: "Kenya's latest Eurobond issue draws strong demand, reflecting optimism for African debt markets." },
+            { title: "AI-driven trading volumes surge, reshaping market liquidity and volatility.", url: "https://www.bloomberg.com/markets", summary: "Algorithmic and AI-based trading now account for over 60% of daily market volume in major exchanges." },
+            { title: "US job growth beats expectations, unemployment at 50-year low.", url: "https://www.wsj.com/news/economy", summary: "US labor market remains robust, supporting consumer spending and economic growth." },
+            { title: "China launches digital yuan pilot in major cities, accelerating CBDC adoption.", url: "https://www.reuters.com/markets/asia", summary: "China expands its digital currency pilot, aiming for global leadership in central bank digital currencies." },
+            { title: "Oil prices steady as OPEC+ maintains production cuts amid global demand uncertainty.", url: "https://www.cnbc.com/energy/", summary: "OPEC+ signals continued supply discipline as energy markets weigh demand risks." },
+            { title: "IMF warns of rising global debt, urges fiscal discipline and structural reforms.", url: "https://www.imf.org/en/News", summary: "The IMF calls for prudent fiscal policy as global debt reaches new highs post-pandemic." },
+            { title: "Nairobi Securities Exchange launches ESG index to attract sustainable investment.", url: "https://www.nse.co.ke/market-data/indices.html", summary: "The NSE debuts an ESG index, promoting responsible investing in Kenya and East Africa." }
+        ];
+        // 3. Quick Finance Facts (educational, surprising, for students)
+        const financeFactsData = [
+            "The first stock exchange was established in Amsterdam in 1602 by the Dutch East India Company.",
+            "Compound interest is often called the 'eighth wonder of the world' for its exponential growth effect.",
+            "The S&P 500 index covers about 80% of the total US stock market capitalization.",
+            "Kenya's M-Pesa is one of the world's most successful mobile money platforms, revolutionizing financial inclusion.",
+            "The 2008 Global Financial Crisis led to the largest coordinated central bank intervention in history.",
+            "A diversified portfolio can reduce risk without sacrificing expected returns, according to Modern Portfolio Theory.",
+            "The Nairobi Securities Exchange was founded in 1954 and is one of Africa's oldest stock markets.",
+            "The CFA designation is considered the gold standard for investment professionals worldwide."
+        ];
     // --- Hero Heading Chameleon Color ---
     window.addEventListener('DOMContentLoaded', function() {
         const heading = document.getElementById('hero-heading');
@@ -1340,39 +1363,12 @@
     // --- Deep Market Snapshot, News, and Finance Facts (Auto, Swipeable, Touch-Optimized) ---
     // 1. Market Snapshot: Major indices, currencies, crypto, commodities
     const marketSnapshotData = [
-        {name:'S&P 500', value:'5,432.10', change:'+0.18%', info:'US large-cap stocks, global benchmark.'},
-        {name:'Nasdaq', value:'17,890.45', change:'-0.12%', info:'Tech-heavy US index, tracks innovation.'},
-        {name:'FTSE 100', value:'7,650.30', change:'+0.09%', info:'UK blue-chip stocks, global exposure.'},
-        {name:'Nikkei 225', value:'32,100.50', change:'+0.25%', info:'Japan’s main stock index, export-driven.'},
-        {name:'US 10 Yr', value:'4.12%', change:'-0.05%', info:'US Treasury yield, key for rates.'},
-        {name:'Crude Oil', value:'$78.20', change:'+0.41%', info:'Global energy price barometer.'},
-        {name:'Gold', value:'$2,345.60', change:'-0.11%', info:'Safe-haven asset, inflation hedge.'},
-        {name:'BTC/USD', value:'$44,200', change:'+2.3%', info:'Bitcoin, leading cryptocurrency.'},
-        {name:'EUR/USD', value:'1.09', change:'-0.08%', info:'Euro vs US Dollar, FX benchmark.'}
     ];
     // 2. Trending Global News (last 24h, finance focus)
     const trendingNewsData = [
-        {title:'Global stocks edge higher as inflation fears ease', url:'https://www.ft.com/', summary:'Markets rally on signs of cooling inflation in US and Europe.'},
-        {title:'US job growth beats expectations in July', url:'https://www.wsj.com/', summary:'Strong labor market data boosts investor confidence.'},
-        {title:'Oil prices rise amid Middle East tensions', url:'https://www.bloomberg.com/', summary:'Crude oil climbs as geopolitical risks increase.'},
-        {title:'Bitcoin surges past $44,000 on ETF optimism', url:'https://www.coindesk.com/', summary:'Crypto markets rally as ETF approval looks likely.'},
-        {title:'China’s exports rebound, easing slowdown concerns', url:'https://www.reuters.com/', summary:'Chinese trade data surprises to the upside.'},
-        {title:'ECB signals end to rate hikes in 2025', url:'https://www.cnbc.com/', summary:'European Central Bank hints at policy pause.'},
-        {title:'AI stocks lead tech sector gains', url:'https://www.nasdaq.com/', summary:'Artificial intelligence companies outperform broader market.'},
-        {title:'Gold demand rises as investors seek safety', url:'https://www.kitco.com/', summary:'Precious metals attract inflows amid market volatility.'}
     ];
     // 3. Quick Finance Facts (educational, surprising, for students)
     const financeFactsData = [
-        'The S&P 500 covers about 80% of the US stock market’s value.',
-        'Compound interest can turn $100/month into $20,000+ in 10 years at 8%.',
-        'The first ETF launched in 1993; now there are over 8,000 worldwide.',
-        'Bitcoin’s supply is capped at 21 million coins.',
-        'A diversified portfolio can reduce risk without sacrificing returns.',
-        'The “Rule of 72” estimates how long it takes to double your money: 72 ÷ interest rate.',
-        'The world’s largest asset manager, BlackRock, oversees over $10 trillion.',
-        'The NYSE is the world’s largest stock exchange by market cap.',
-        'Mutual funds allow investors to pool money for diversification.',
-        'The US dollar is the most traded currency globally.'
     ];
 
     // --- Swipeable/Auto-Rotating UI Logic with Touch Support ---
