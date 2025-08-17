@@ -28,69 +28,6 @@
             .side {
                 min-width: 100vw !important;
                 max-width: 100vw !important;
-                width: 100vw !important;
-                flex-direction: row !important;
-                gap: 12px !important;
-                overflow-x: auto !important;
-                overflow-y: visible !important;
-                padding: 0 0 8px 0 !important;
-                margin-bottom: 0 !important;
-                background: none;
-                box-shadow: none;
-                scrollbar-width: thin;
-                -webkit-overflow-scrolling: touch;
-            }
-            .sidebar-card {
-                min-width: 240px;
-                max-width: 90vw;
-                flex: 0 0 auto;
-                margin-bottom: 0;
-                font-size: 1em;
-                box-sizing: border-box;
-                border-radius: 16px;
-                box-shadow: 0 4px 16px rgba(10,25,47,0.13);
-                background: rgba(33,38,45,0.92);
-                margin-right: 10px;
-                margin-left: 0;
-                padding: 18px 14px 18px 16px;
-            }
-            .sidebar-card:last-child {
-                margin-right: 0;
-            }
-            .center {
-                margin-top: 0 !important;
-                padding: 0 2vw 0 2vw !important;
-                min-width: 100vw !important;
-                max-width: 100vw !important;
-                width: 100vw !important;
-            }
-            section.card, .glass, .card.hero {
-                border-radius: 16px !important;
-                box-shadow: 0 4px 16px rgba(10,25,47,0.13) !important;
-                margin-bottom: 22px !important;
-                padding: 18px 4vw 18px 4vw !important;
-                background: rgba(33,38,45,0.97) !important;
-            }
-            h1, h2, h3 {
-                font-size: 1.18em !important;
-                margin-bottom: 10px !important;
-                margin-top: 0 !important;
-                letter-spacing: 0.01em;
-            }
-            .goals-list {
-                grid-template-columns: 1fr !important;
-                gap: 14px !important;
-            }
-            .goal-item {
-                border-radius: 14px !important;
-                box-shadow: 0 2px 8px rgba(10,25,47,0.10) !important;
-                padding: 14px 10px 12px 10px !important;
-                font-size: 1em !important;
-            }
-            .ai-chatbox {
-                width: 98vw !important;
-                right: 1vw !important;
-                left: 1vw !important;
                 bottom: 10px !important;
                 max-width: 99vw !important;
                 min-width: unset !important;
@@ -849,7 +786,7 @@
             </div>
             <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
                 <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Trending Global News</h3>
-                <ul id="trending-news" style="list-style:none;padding-left:0;margin:0;font-size:0.98em;line-height:1.5;"></ul>
+                <div id="trending-news" style="font-size:0.98em;line-height:1.5;"></div>
             </div>
             <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
                 <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Quick Finance Facts</h3>
@@ -1076,22 +1013,6 @@
             </section>
         </main>
         <aside class="side">
-            <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
-                <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Live Quotes</h3>
-                <div id="live-quotes" style="font-size:0.98em;line-height:1.5;"></div>
-            </div>
-            <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
-                <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Upcoming Events</h3>
-                <ul id="upcoming-events" style="list-style:none;padding-left:0;margin:0;font-size:0.98em;line-height:1.5;"></ul>
-            </div>
-            <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
-                <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Featured Research</h3>
-                <div id="featured-research" style="font-size:0.98em;"></div>
-            </div>
-            <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
-                <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Community Highlights</h3>
-                <div id="community-highlights" style="font-size:0.98em;"></div>
-            </div>
         </aside>
     </div>
     <div class="ai-chatbox" id="ai-chatbox">
@@ -1273,23 +1194,113 @@
     });
     </script>
 
+
         <style>
+        :root {
+            --sidebar-width: clamp(220px, 22vw, 320px);
+            --main-max: 100vw;
+            --card-bg: rgba(255,255,255,0.82);
+            --bg: #f7fafd;
+            --border: #e0e6ef;
+            --accent: #1a73e8;
+            --muted: #5a6a7a;
+            --text: #1a2233;
+            --primary: #fff;
+        }
+        html {
+            font-size: clamp(14px, 2vw, 18px);
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Arial, Verdana, sans-serif;
+            min-height: 100vh;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100vw;
+            max-width: 100vw;
+            min-width: 0;
+            gap: clamp(12px, 2vw, 32px);
+            padding: clamp(8px, 2vw, 32px) clamp(2vw, 4vw, 48px);
+            box-sizing: border-box;
+        }
+        .side {
+            flex: 0 0 var(--sidebar-width);
+            max-width: var(--sidebar-width);
+            min-width: 180px;
+            width: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 2vw, 24px);
+            position: sticky;
+            top: clamp(12px, 2vw, 32px);
+            align-self: flex-start;
+            z-index: 2;
+        }
+        .center {
+            flex: 1 1 0%;
+            min-width: 0;
+            max-width: min(100vw, 900px);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(18px, 3vw, 36px);
+        }
+        .sidebar-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: clamp(12px, 2vw, 18px) clamp(10px, 2vw, 14px);
+            box-shadow: 0 2px 8px rgba(10,25,47,0.10);
+            margin-bottom: 0;
+        }
+        .sidebar-card h3 {
+            margin-top: 0;
+            margin-bottom: clamp(6px, 1vw, 10px);
+            color: var(--accent);
+            font-size: clamp(1rem, 1.1vw, 1.1rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .sidebar-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            font-size: clamp(0.93em, 1vw, 0.98em);
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(10,25,47,0.10);
+            padding: clamp(18px, 3vw, 32px) clamp(14px, 2vw, 28px);
+            margin-bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
         /* --- Enhanced Market Snapshot, News, and Finance Facts --- */
         .swipeable-list {
             display: flex;
             overflow-x: auto;
-            gap: 18px;
+            gap: clamp(10px, 2vw, 18px);
             scroll-snap-type: x mandatory;
             padding-bottom: 4px;
         }
         .swipeable-list::-webkit-scrollbar { height: 6px; background: #e0e0e0; }
         .swipeable-list::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
         .swipeable-item {
-            min-width: 180px;
+            min-width: clamp(140px, 18vw, 220px);
             background: var(--bg);
             border-radius: 8px;
             box-shadow: 0 1px 4px rgba(10,25,47,0.07);
-            padding: 12px 14px;
+            padding: clamp(10px, 1.5vw, 14px);
             scroll-snap-align: start;
             border: 1px solid var(--border);
             transition: box-shadow 0.2s;
@@ -1303,9 +1314,9 @@
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            font-size: 1.2em;
+            width: clamp(22px, 2vw, 28px);
+            height: clamp(22px, 2vw, 28px);
+            font-size: clamp(1em, 1.2vw, 1.2em);
             cursor: pointer;
             margin: 0 4px;
             box-shadow: 0 1px 4px rgba(10,25,47,0.10);
@@ -1313,63 +1324,30 @@
         }
         .swipe-nav-btn:active { background: var(--accent-dark, #1a237e); }
         .swipeable-list-wrap { display: flex; align-items: center; gap: 6px; }
-        .sidebar-card h3 { display: flex; align-items: center; justify-content: space-between; }
+        /* --- Responsive Layout --- */
+        @media (max-width: 1100px) {
+            .container { flex-direction: column; align-items: stretch; padding: clamp(6px, 2vw, 18px) clamp(1vw, 2vw, 18px); }
+            .side { flex-direction: row; flex-wrap: wrap; position: static; width: 100%; max-width: 100vw; min-width: 0; gap: clamp(10px, 2vw, 18px); }
+            .sidebar-card { flex: 1 1 220px; min-width: 160px; }
+        }
+        @media (max-width: 700px) {
+            html { font-size: clamp(13px, 3vw, 16px); }
+            .container { flex-direction: column; align-items: stretch; gap: clamp(8px, 2vw, 18px); padding: clamp(4px, 2vw, 12px) clamp(1vw, 2vw, 8px); }
+            .side { flex-direction: column; position: static; width: 100%; max-width: 100vw; min-width: 0; gap: clamp(8px, 2vw, 14px); }
+            .sidebar-card { width: 100%; min-width: 0; }
+            .center { max-width: 100vw; padding: 0; }
+            .card { padding: clamp(12px, 2vw, 18px) clamp(8px, 2vw, 14px); }
+        }
+        @media (max-width: 480px) {
+            html { font-size: clamp(12px, 4vw, 15px); }
+            .container { padding: 0 2vw; }
+            .side, .center { gap: clamp(6px, 2vw, 10px); }
+            .card, .sidebar-card { padding: clamp(8px, 2vw, 12px) clamp(4px, 2vw, 8px); }
+        }
         </style>
 
-    <style>
-    /* --- Enhanced Market Snapshot, News, and Finance Facts --- */
-    .swipeable-list {
-      display: flex;
-      overflow-x: auto;
-      gap: 18px;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 4px;
-    }
-    .swipeable-list::-webkit-scrollbar { height: 6px; background: #e0e0e0; }
-    .swipeable-list::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
-    .swipeable-item {
-      min-width: 180px;
-      background: var(--bg);
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(10,25,47,0.07);
-      padding: 12px 14px;
-      scroll-snap-align: start;
-      border: 1px solid var(--border);
-      transition: box-shadow 0.2s;
-    }
-    .swipeable-item.active {
-      box-shadow: 0 2px 12px rgba(10,25,47,0.13);
-      border-color: var(--accent);
-    }
-    .swipe-nav-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      font-size: 1.2em;
-      cursor: pointer;
-      margin: 0 4px;
-      box-shadow: 0 1px 4px rgba(10,25,47,0.10);
-      transition: background 0.2s;
-    }
-    .swipe-nav-btn:active { background: var(--accent-dark, #1a237e); }
-    .swipeable-list-wrap { display: flex; align-items: center; gap: 6px; }
-    .sidebar-card h3 { display: flex; align-items: center; justify-content: space-between; }
-    </style>
-
     <script>
-    // --- Deep Market Snapshot, News, and Finance Facts (Auto, Swipeable, Touch-Optimized) ---
-    // 1. Market Snapshot: Major indices, currencies, crypto, commodities
-    const marketSnapshotData = [
-    ];
-    // 2. Trending Global News (last 24h, finance focus)
-    const trendingNewsData = [
-    ];
-    // 3. Quick Finance Facts (educational, surprising, for students)
-    const financeFactsData = [
-    ];
+    // ...existing code...
 
     // --- Swipeable/Auto-Rotating UI Logic with Touch Support ---
     function renderSwipeableList(container, data, renderFn, navIdPrefix) {
