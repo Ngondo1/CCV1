@@ -2,10 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>CAMPUS CAPITAL | Strathmore Student-Run Fund</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Universal proportional scaling for all UI elements */
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        table {
+            width: 100%;
+            display: block;
+            overflow-x: auto;
+            font-size: inherit;
+        }
+        th, td {
+            font-size: inherit;
+            padding: 0.5em;
+        }
+        form, input, select, textarea, button {
+            min-width: 0;
+            width: 100%;
+            max-width: 100%;
+            font-size: inherit;
+            box-sizing: border-box;
+        }
+        button, input[type="submit"], .ai-chatbox button {
+            padding: 0.6em 1.2em;
+            border-radius: 0.5em;
+            min-height: 44px;
+            min-width: 44px;
+        }
+        .goals-list, .goal-item, .sidebar-card, .card, .glass, .card.hero, .header-inner, nav, .ai-chatbox, #hero-desc, h1, h2, h3, .muted, .tag, .sidebar-card h3, .sidebar-card ul, .sidebar-card li, .sidebar-card div, .logo, .ticker, .ai-chatbox input, .ai-chatbox button, #ai-demos form, #ai-demos #finance-results {
+            font-size: inherit;
+            gap: 1em;
+            padding: 1em;
+        }
+        .goals-list {
+            gap: 1.2em;
+        }
+        .goal-item {
+            padding: 1em 1.2em 0.8em 1.2em;
+            border-radius: 0.7em;
+        }
+        .sidebar-card {
+            border-radius: 0.7em;
+            padding: 1em 0.8em;
+        }
+        .card, .glass, .card.hero {
+            border-radius: 0.8em;
+            padding: 1.2em 1.6em;
+        }
+        .header-inner, nav {
+            gap: 1em;
+            padding: 0.7em 2vw;
+        }
+        .logo {
+            font-size: 2.2em;
+        }
+        .ticker {
+            font-size: 1.1em;
+            padding: 0.5em 0 0.5em 1em;
+        }
+        .ai-chatbox {
+            border-radius: 0.7em;
+            padding: 1em;
+        }
+        #ai-demos form, #ai-demos #finance-results {
+            padding: 1em 1vw 0.7em 1vw;
+        }
+        /* Proportional scaling for all content on small screens */
+        html {
+            font-size: clamp(13px, 2.5vw, 18px);
+        }
+        body, .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero, .header-inner, nav, .ai-chatbox, #hero-desc, h1, h2, h3, .goal-item, .muted, .tag, .sidebar-card h3, .sidebar-card ul, .sidebar-card li, .sidebar-card div, .logo, .ticker, .ai-chatbox input, .ai-chatbox button, #ai-demos form, #ai-demos #finance-results {
+            font-size: 1em;
+        }
+        @container (max-width: 700px) {
+            body, .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero, .header-inner, nav, .ai-chatbox, #hero-desc, h1, h2, h3, .goal-item, .muted, .tag, .sidebar-card h3, .sidebar-card ul, .sidebar-card li, .sidebar-card div, .logo, .ticker, .ai-chatbox input, .ai-chatbox button, #ai-demos form, #ai-demos #finance-results {
+                font-size: 0.92em;
+            }
+        }
+        @media (max-width: 700px) {
+            html {
+                font-size: clamp(12px, 2vw, 16px);
+            }
+            body, .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero, .header-inner, nav, .ai-chatbox, #hero-desc, h1, h2, h3, .goal-item, .muted, .tag, .sidebar-card h3, .sidebar-card ul, .sidebar-card li, .sidebar-card div, .logo, .ticker, .ai-chatbox input, .ai-chatbox button, #ai-demos form, #ai-demos #finance-results {
+                font-size: 0.92em;
+            }
+        }
+        @media (max-width: 430px) {
+            html {
+                font-size: clamp(11px, 1.7vw, 15px);
+            }
+            body, .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero, .header-inner, nav, .ai-chatbox, #hero-desc, h1, h2, h3, .goal-item, .muted, .tag, .sidebar-card h3, .sidebar-card ul, .sidebar-card li, .sidebar-card div, .logo, .ticker, .ai-chatbox input, .ai-chatbox button, #ai-demos form, #ai-demos #finance-results {
+                font-size: 0.88em;
+            }
+        }
+        @media (max-width: 375px) {
+            html {
+                font-size: clamp(10px, 1.2vw, 13px);
+            }
+            body, .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero, .header-inner, nav, .ai-chatbox, #hero-desc, h1, h2, h3, .goal-item, .muted, .tag, .sidebar-card h3, .sidebar-card ul, .sidebar-card li, .sidebar-card div, .logo, .ticker, .ai-chatbox input, .ai-chatbox button, #ai-demos form, #ai-demos #finance-results {
+                font-size: 0.82em;
+            }
+        }
+        html, body {
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: env(safe-area-inset-bottom, 70px);
+        }
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+        body {
+            font-size: clamp(15px, 3vw, 18px);
+        }
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
         html, body {
             width: 100vw;
             min-height: 100vh;
@@ -31,23 +149,30 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            width: 100vw;
+            max-width: 100vw;
         }
         .main-grid {
-            display: grid;
-            grid-template-columns: 240px 1fr 240px;
+            display: flex;
+            flex-direction: row;
             gap: 32px;
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 0 32px 0;
+            width: 100%;
         }
         .side {
             position: sticky;
             top: 80px;
             align-self: flex-start;
             min-height: 80vh;
+            width: 100%;
+            max-width: 100vw;
         }
         .center {
             margin-top: 48px;
+            width: 100%;
+            max-width: 100vw;
         }
         .card, .glass {
             background: var(--glass);
@@ -55,9 +180,12 @@
             box-shadow: var(--shadow);
             padding: 28px 32px;
             margin-bottom: 32px;
+            width: 100%;
+            max-width: 100vw;
         }
         header {
             width: 100vw;
+            max-width: 100vw;
             background: var(--primary);
             color: var(--accent);
             padding: 0 0 0 0;
@@ -74,6 +202,8 @@
             justify-content: flex-start;
             padding: 14px 32px 2px 32px;
             position: relative;
+            width: 100%;
+            max-width: 100vw;
         }
         .logo {
             font-size: 2.2rem;
@@ -248,6 +378,8 @@
             box-shadow: 0 2px 8px rgba(10,25,47,0.10);
             color: #eaf6ff; /* brighter text for contrast */
             backdrop-filter: blur(6px);
+            width: 100%;
+            max-width: 100vw;
         }
         .sidebar-card h3 {
             margin-top: 0;
@@ -265,11 +397,33 @@
             color: #58a6ff !important;
         }
         @media (max-width: 1100px) {
+            .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
+            .main-grid, .side {
+                flex-direction: column !important;
+                display: flex !important;
+                gap: 0 !important;
+                padding: 0 !important;
+            }
+            .sidebar-card {
+                margin-bottom: 12px !important;
+            }
+            .center {
+                order: 1;
+            }
+            .side {
+                order: 0;
+            }
             .main-grid {
                 display: flex;
                 flex-direction: column;
                 gap: 0;
                 width: 100vw;
+                max-width: 100vw;
                 padding: 0;
             }
             .side {
@@ -359,10 +513,32 @@
             }
         }
         @media (max-width: 700px) {
+            .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
+            .main-grid, .side {
+                flex-direction: column !important;
+                display: flex !important;
+                gap: 0 !important;
+                padding: 0 !important;
+            }
+            .sidebar-card {
+                margin-bottom: 10px !important;
+            }
+            .center {
+                order: 1;
+            }
+            .side {
+                order: 0;
+            }
             .main-grid {
                 flex-direction: column;
                 gap: 0;
                 width: 100vw;
+                max-width: 100vw;
                 padding: 0;
             }
             .side {
@@ -412,6 +588,12 @@
             }
         }
         @media (max-width: 430px) {
+            .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
             .header-inner, .container {
                 padding: 4px 1vw !important;
             }
@@ -429,6 +611,12 @@
             }
         }
         @media (max-width: 375px) {
+            .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
             .sidebar-card {
                 min-width: 180px;
                 max-width: 98vw;
@@ -617,7 +805,7 @@
     </header>
     <div class="ticker"><span id="ticker-content"></span></div>
     <div class="main-grid">
-    <aside class="side" tabindex="0" aria-label="Quick Finance Info (swipe left/right on mobile)">
+    <aside class="side" tabindex="0" aria-label="Quick Finance Info">
             <div class="sidebar-card" style="background:var(--card-bg);border-radius:10px;padding:18px 14px;margin-bottom:18px;box-shadow:0 2px 8px rgba(10,25,47,0.10);">
                 <h3 style="margin-top:0;margin-bottom:10px;color:var(--accent);font-size:1.1rem;">Market Snapshot</h3>
                 <div id="market-snapshot" style="font-size:0.98em;line-height:1.5;"></div>
@@ -892,59 +1080,120 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
 
-    <script>
-    // --- Hero Heading Chameleon Color ---
-    window.addEventListener('DOMContentLoaded', function() {
-        const heading = document.getElementById('hero-heading');
-        if (heading) {
-            let hue = 210;
-            function animateHeroHeading() {
-                hue += 0.7;
-                if (hue > 300) hue = 210;
-                heading.style.color = `hsl(${hue}, 80%, 60%)`;
-                requestAnimationFrame(animateHeroHeading);
+            .main-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                width: 100vw;
+                max-width: 100vw;
+                padding: 0;
             }
-            animateHeroHeading();
+            .side {
+                display: flex;
+                flex-direction: column;
+                width: 100vw;
+                max-width: 100vw;
+                min-width: 0;
+                padding: 0 0 8px 0;
+                margin-bottom: 0;
+                position: static;
+                min-height: unset;
+                z-index: 1;
+            }
+            .sidebar-card {
+                width: 100vw;
+                max-width: 100vw;
+                min-width: 0;
+                margin-bottom: 12px;
+                font-size: 1em;
+                box-sizing: border-box;
+            }
+            .side {
+                flex-direction: column;
+                width: 100vw;
+                max-width: 100vw;
+                min-width: 0;
+                padding: 0 0 4px 0;
+                margin-bottom: 0;
+                position: static;
+                min-height: unset;
+                z-index: 1;
+            }
+            .sidebar-card {
+                width: 100vw;
+                max-width: 100vw;
+                min-width: 0;
+                margin-bottom: 10px;
+                font-size: 0.97em;
+                box-sizing: border-box;
+            }
+    <style>
+    /* Floating AI chat button for mobile */
+    @media (max-width: 700px) {
+        .ai-chatbox {
+            display: none !important;
         }
-        // --- Hero Paragraph Slow Reveal, Ocean Blue Wavy Animation, Justified, Readable Font ---
-        const desc = document.getElementById('hero-desc');
-        if (desc) {
-            const text1 = "Karibu! Welcome to the Strathmore Student-Run Fund. Our initiative is dedicated to equipping students with practical investment and financial management skills, grounded in real-world experience and academic research. Whether you are new to finance or seeking to deepen your expertise, our mission is to empower you with the knowledge and confidence to make informed financial decisions.";
-            const text2 = "Student-run investment funds have a rich history, originating in the early 20th century as platforms for experiential learning. Today, universities worldwide—including Strathmore—enable students to analyze markets, manage portfolios, and develop leadership in finance. Through teamwork and discipline, we demonstrate that vijana (youth) can drive innovation and integrity in the financial sector.";
-            const paragraphs = [text1, text2];
-            let pIdx = 0, wIdx = 0;
-            // Ocean blue wavy color animation
-            function getOceanBlue(t) {
-                // Subtle blue wave: narrow the range for both hue and lightness
-                // Soft blue: hsl(208, 85%, 62%) to hsl(212, 85%, 54%)
-                const minL = 54, maxL = 62;
-                const minH = 208, maxH = 212;
-                const wave = Math.sin(t * Math.PI * 2);
-                const lightness = minL + (maxL - minL) * (wave + 1) / 2;
-                const hue = minH + (maxH - minH) * (Math.cos(t * Math.PI * 2) + 1) / 2;
-                return `hsl(${hue.toFixed(0)}, 85%, ${lightness.toFixed(1)}%)`;
+        #ai-fab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 56px;
+            height: 56px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 2px 12px rgba(10,25,47,0.18);
+            z-index: 3000;
+            font-size: 2rem;
+            cursor: pointer;
+            border: none;
+        }
+        #ai-fab[aria-expanded="true"] {
+            background: var(--primary);
+            color: var(--accent);
+        }
+        #ai-fab + .ai-chatbox {
+            display: flex !important;
+            position: fixed;
+            right: 10px;
+            left: 10px;
+            bottom: 80px;
+            width: calc(100vw - 20px);
+            max-width: 99vw;
+            min-width: unset;
+            font-size: 0.98em;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(10,25,47,0.13);
+            z-index: 3001;
+        }
+    }
+    </style>
+    <button id="ai-fab" aria-label="Open AI Assistant" aria-expanded="false" style="display:none;">💬</button>
+    <!-- AI chatbox remains here, but is toggled by FAB on mobile -->
+    // Show floating AI chat button on mobile, toggle chatbox
+    document.addEventListener('DOMContentLoaded', function() {
+        const fab = document.getElementById('ai-fab');
+        const chatbox = document.querySelector('.ai-chatbox');
+        function checkFab() {
+            if(window.innerWidth <= 700) {
+                fab.style.display = 'flex';
+                chatbox.style.display = 'none';
+            } else {
+                fab.style.display = 'none';
+                chatbox.style.display = 'flex';
             }
-            let colorStep = 0;
-            function revealPara() {
-                if (pIdx >= paragraphs.length) return;
-                const para = paragraphs[pIdx];
-                const words = para.split(' ');
-                let idx = 0;
-                function revealWord() {
-                    // Animate color as a wave along the paragraph
-                    let html = '';
-                    for (let j = 0; j < pIdx; j++) {
-                        html += `<span style='display:block;margin-bottom:12px;text-align:justify;'>${paragraphs[j]}</span>`;
-                    }
-                    for (let k = 0; k <= idx; k++) {
-                        const t = ((wIdx + k + colorStep) % 32) / 32;
-                        html += `<span style='color:${getOceanBlue(t)};'>${words[k]}</span>` + (k < idx ? ' ' : '');
-                    }
-                    if (idx < words.length-1) {
-                        html += '|';
-                    }
-                    desc.innerHTML = html;
-                    if (idx < words.length-1) {
+        }
+        checkFab();
+        window.addEventListener('resize', checkFab);
+        fab.addEventListener('click', function() {
+            const expanded = fab.getAttribute('aria-expanded') === 'true';
+            fab.setAttribute('aria-expanded', !expanded);
+            chatbox.style.display = expanded ? 'none' : 'flex';
+        });
+    });
                         idx++;
                         setTimeout(revealWord, 65);
                     } else {

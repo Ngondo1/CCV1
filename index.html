@@ -6,6 +6,56 @@
     <title>CAMPUS CAPITAL | Strathmore Student-Run Fund</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* --- Header Mobile Decongestion --- */
+        @media (max-width: 700px) {
+            header {
+                backdrop-filter: blur(8px);
+                box-shadow: 0 2px 12px rgba(10,25,47,0.13);
+            }
+            .header-inner {
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 0;
+                padding: 8px 2vw 8px 2vw !important;
+                min-height: 54px;
+            }
+            .logo {
+                font-size: 1.1rem !important;
+                margin-right: 10px;
+                min-width: 120px;
+                max-width: 40vw;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                padding: 0 2px;
+            }
+            nav {
+                flex: 1 1 auto;
+                min-width: 0;
+                overflow-x: auto;
+                display: flex;
+                gap: 10px;
+                padding: 0 0 0 2vw;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            nav::-webkit-scrollbar { display: none; }
+            nav a {
+                font-size: 0.97em;
+                padding: 6px 10px;
+                border-radius: 6px;
+                background: rgba(33,38,45,0.7);
+                color: var(--text);
+                white-space: nowrap;
+                transition: background 0.2s, color 0.2s;
+            }
+            nav a:hover {
+                background: var(--accent);
+                color: var(--primary);
+            }
+        }
+        /* --- UNIVERSAL PROPORTIONAL SCALING & MOBILE-FIRST CSS (from goals_page.html) --- */
         :root {
             --primary: #0d1117;
             --accent: #58a6ff;
@@ -17,7 +67,7 @@
             --border: #30363d;
             --shadow: 0 8px 32px 0 rgba(20,30,50,0.18);
         }
-        html { box-sizing: border-box; }
+        html { box-sizing: border-box; font-size: clamp(13px, 2.5vw, 18px); }
         *, *:before, *:after { box-sizing: inherit; }
         body {
             font-family: 'Inter', Arial, sans-serif;
@@ -26,23 +76,58 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            width: 100vw;
+            max-width: 100vw;
+        }
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        table {
+            width: 100%;
+            display: block;
+            overflow-x: auto;
+            font-size: inherit;
+        }
+        th, td {
+            font-size: inherit;
+            padding: 0.5em;
+        }
+        form, input, select, textarea, button {
+            min-width: 0;
+            width: 100%;
+            max-width: 100%;
+            font-size: inherit;
+            box-sizing: border-box;
+        }
+        button, input[type="submit"], .ai-chatbox button {
+            padding: 0.6em 1.2em;
+            border-radius: 0.5em;
+            min-height: 44px;
+            min-width: 44px;
         }
         .main-grid {
-            display: grid;
-            grid-template-columns: 240px 1fr 240px;
+            display: flex;
+            flex-direction: row;
             gap: 32px;
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 0 32px 0;
+            width: 100%;
         }
         .side {
             position: sticky;
             top: 80px;
             align-self: flex-start;
             min-height: 80vh;
+            width: 100%;
+            max-width: 100vw;
         }
         .center {
             margin-top: 48px;
+            width: 100%;
+            max-width: 100vw;
         }
         .card, .glass {
             background: var(--glass);
@@ -50,9 +135,12 @@
             box-shadow: var(--shadow);
             padding: 28px 32px;
             margin-bottom: 32px;
+            width: 100%;
+            max-width: 100vw;
         }
         header {
             width: 100vw;
+            max-width: 100vw;
             background: var(--primary);
             color: var(--accent);
             padding: 0 0 0 0;
@@ -69,6 +157,8 @@
             justify-content: flex-start;
             padding: 14px 32px 2px 32px;
             position: relative;
+            width: 100%;
+            max-width: 100vw;
         }
         .logo {
             font-size: 2.2rem;
@@ -82,10 +172,6 @@
         }
         nav {
             margin-left: auto;
-            display: flex;
-            gap: 28px;
-        }
-        nav {
             display: flex;
             gap: 28px;
         }
@@ -171,7 +257,6 @@
             background: var(--primary);
             color: var(--accent);
         }
-        /* --- Financial Calculator Section Styles --- */
         #ai-demos form {
             background: rgba(33,38,45,0.85);
             border-radius: 10px;
@@ -235,12 +320,12 @@
             box-shadow: 0 2px 8px rgba(10,25,47,0.10);
         }
         .sidebar-card {
-            background: rgba(33,38,45,0.55); /* semi-transparent glass effect */
+            background: rgba(33,38,45,0.55);
             border-radius: 10px;
             padding: 18px 14px;
             margin-bottom: 18px;
             box-shadow: 0 2px 8px rgba(10,25,47,0.10);
-            color: #eaf6ff; /* brighter text for contrast */
+            color: #eaf6ff;
             backdrop-filter: blur(6px);
         }
         .sidebar-card h3 {
@@ -258,15 +343,248 @@
         .sidebar-card a:hover {
             color: #58a6ff !important;
         }
+        /* --- MOBILE-FIRST BREAKPOINTS --- */
         @media (max-width: 1100px) {
-            .main-grid { grid-template-columns: 1fr; gap: 0; }
-            .side { display: none; }
-            .center { margin-top: 24px; }
+            .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
+            .main-grid, .side {
+                flex-direction: column !important;
+                display: flex !important;
+                gap: 0 !important;
+                padding: 0 !important;
+            }
+            .sidebar-card {
+                margin-bottom: 12px !important;
+            }
+            .center {
+                order: 1;
+            }
+            .side {
+                order: 0;
+            }
+            .main-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                width: 100vw;
+                max-width: 100vw;
+                padding: 0;
+            }
+            .side {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 12px;
+                width: 100vw;
+                min-width: 0;
+                padding: 0 0 8px 0;
+                margin-bottom: 0;
+                position: static;
+                min-height: unset;
+                z-index: 1;
+                scrollbar-width: thin;
+                -webkit-overflow-scrolling: touch;
+            }
+            .sidebar-card {
+                min-width: 260px;
+                max-width: 90vw;
+                flex: 0 0 auto;
+                margin-bottom: 0;
+                font-size: 1em;
+                box-sizing: border-box;
+            }
+            .center {
+                margin-top: 12px;
+                width: 100vw;
+                box-sizing: border-box;
+            }
+            section.card, .glass, .card.hero {
+                width: 100vw;
+                max-width: 100vw;
+                min-width: 0;
+                box-sizing: border-box;
+                border-radius: 10px;
+                padding-left: 4vw;
+                padding-right: 4vw;
+            }
+            .goals-list {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .goal-item {
+                padding: 14px 10px 12px 10px;
+                font-size: 1em;
+            }
+            .ai-chatbox {
+                width: 98vw;
+                right: 1vw;
+                left: 1vw;
+                bottom: 10px;
+                max-width: 99vw;
+                min-width: unset;
+                font-size: 1em;
+                border-radius: 10px;
+                box-shadow: 0 2px 12px rgba(10,25,47,0.13);
+            }
+            .sidebar-card h3 {
+                font-size: 1em;
+            }
+            .sidebar-card ul, .sidebar-card li, .sidebar-card div {
+                font-size: 1em;
+            }
+            .logo {
+                font-size: 1.25rem !important;
+            }
+            header {
+                padding: 0;
+            }
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+                padding: 8px 2vw 2px 2vw !important;
+            }
+            a[href="#goals"] {
+                padding: 8px 18px !important;
+                font-size: 1em !important;
+            }
+            .muted {
+                font-size: 1em;
+            }
+            img {
+                max-width: 90vw;
+                height: auto;
+            }
         }
         @media (max-width: 700px) {
-            .container, .header-inner { padding: 12px 2vw; }
-            .center { margin-top: 12px; }
+            html {
+                font-size: clamp(12px, 2vw, 16px);
+            }
+            .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
+            .main-grid, .side {
+                flex-direction: column !important;
+                display: flex !important;
+                gap: 0 !important;
+                padding: 0 !important;
+            }
+            .sidebar-card {
+                margin-bottom: 10px !important;
+            }
+            .center {
+                order: 1;
+            }
+            .side {
+                order: 0;
+            }
+            .main-grid {
+                flex-direction: column;
+                gap: 0;
+                width: 100vw;
+                max-width: 100vw;
+                padding: 0;
+            }
+            .side {
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 8px;
+                width: 100vw;
+                min-width: 0;
+                padding: 0 0 4px 0;
+                margin-bottom: 0;
+                position: static;
+                min-height: unset;
+                z-index: 1;
+                scrollbar-width: thin;
+                -webkit-overflow-scrolling: touch;
+            }
+            .sidebar-card {
+                min-width: 220px;
+                max-width: 92vw;
+                flex: 0 0 auto;
+                margin-bottom: 0;
+                font-size: 0.97em;
+                box-sizing: border-box;
+            }
+            .center {
+                margin-top: 8px;
+                width: 100vw;
+                box-sizing: border-box;
+            }
+            section.card, .glass, .card.hero {
+                width: 100vw;
+                max-width: 100vw;
+                min-width: 0;
+                box-sizing: border-box;
+                border-radius: 8px;
+                padding-left: 2vw;
+                padding-right: 2vw;
+            }
+            #hero-desc {
+                font-size: 0.97rem !important;
+            }
+            .logo {
+                font-size: 1.05rem !important;
+            }
+            h1#hero-heading {
+                font-size: 1.08rem !important;
+            }
         }
+        @media (max-width: 430px) {
+            html {
+                font-size: clamp(11px, 1.7vw, 15px);
+            }
+            .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
+            .header-inner, .container {
+                padding: 4px 1vw !important;
+            }
+            .card, .glass {
+                padding: 8px 2vw !important;
+            }
+            #hero-desc {
+                font-size: 0.95rem !important;
+            }
+            .logo {
+                font-size: 0.95rem !important;
+            }
+            h1#hero-heading {
+                font-size: 0.95rem !important;
+            }
+        }
+        @media (max-width: 375px) {
+            html {
+                font-size: clamp(10px, 1.2vw, 13px);
+            }
+            .main-grid, .side, .center, .card, .glass, .sidebar-card, .card.hero {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
+            .sidebar-card {
+                min-width: 180px;
+                max-width: 98vw;
+                font-size: 0.95em;
+            }
+            .card, .glass, .card.hero {
+                padding-left: 1vw;
+                padding-right: 1vw;
+            }
+        }
+        /* --- END UNIVERSAL PROPORTIONAL SCALING --- */
     </style>
 </head>
 <body>
@@ -781,46 +1099,53 @@
     </style>
 
     <script>
-    // --- Deep Market Snapshot, News, and Finance Facts (Auto, Swipeable) ---
+    // --- Deep Market Snapshot, News, and Finance Facts (Auto, Swipeable, Touch-Optimized) ---
     // 1. Market Snapshot: Major indices, currencies, crypto, commodities
     const marketSnapshotData = [
-    {name:'S&P 500', value:'5,432.10', change:'+0.18%', info:'US large-cap stocks, global benchmark.'},
-    {name:'Nasdaq', value:'17,890.45', change:'-0.12%', info:'Tech-heavy US index, tracks innovation.'},
-    {name:'FTSE 100', value:'7,650.30', change:'+0.09%', info:'UK blue-chip stocks, global exposure.'},
-    {name:'Nikkei 225', value:'32,100.50', change:'+0.25%', info:'Japan’s main stock index, export-driven.'},
-    {name:'US 10 Yr', value:'4.12%', change:'-0.05%', info:'US Treasury yield, key for rates.'},
-    {name:'Crude Oil', value:'$78.20', change:'+0.41%', info:'Global energy price barometer.'},
-    {name:'Gold', value:'$2,345.60', change:'-0.11%', info:'Safe-haven asset, inflation hedge.'},
-    {name:'BTC/USD', value:'$44,200', change:'+2.3%', info:'Bitcoin, leading cryptocurrency.'},
-    {name:'EUR/USD', value:'1.09', change:'-0.08%', info:'Euro vs US Dollar, FX benchmark.'}
+        {name:'S&P 500', value:'5,432.10', change:'+0.18%', info:'US large-cap stocks, global benchmark.'},
+        {name:'Nasdaq', value:'17,890.45', change:'-0.12%', info:'Tech-heavy US index, tracks innovation.'},
+        {name:'FTSE 100', value:'7,650.30', change:'+0.09%', info:'UK blue-chip stocks, global exposure.'},
+        {name:'Nikkei 225', value:'32,100.50', change:'+0.25%', info:'Japan’s main stock index, export-driven.'},
+        {name:'US 10 Yr', value:'4.12%', change:'-0.05%', info:'US Treasury yield, key for rates.'},
+        {name:'Crude Oil', value:'$78.20', change:'+0.41%', info:'Global energy price barometer.'},
+        {name:'Gold', value:'$2,345.60', change:'-0.11%', info:'Safe-haven asset, inflation hedge.'},
+        {name:'BTC/USD', value:'$44,200', change:'+2.3%', info:'Bitcoin, leading cryptocurrency.'},
+        {name:'EUR/USD', value:'1.09', change:'-0.08%', info:'Euro vs US Dollar, FX benchmark.'}
     ];
     // 2. Trending Global News (last 24h, finance focus)
     const trendingNewsData = [
-    {title:'Global stocks edge higher as inflation fears ease', url:'https://www.ft.com/', summary:'Markets rally on signs of cooling inflation in US and Europe.'},
-    {title:'US job growth beats expectations in July', url:'https://www.wsj.com/', summary:'Strong labor market data boosts investor confidence.'},
-    {title:'Oil prices rise amid Middle East tensions', url:'https://www.bloomberg.com/', summary:'Crude oil climbs as geopolitical risks increase.'},
-    {title:'Bitcoin surges past $44,000 on ETF optimism', url:'https://www.coindesk.com/', summary:'Crypto markets rally as ETF approval looks likely.'},
-    {title:'China’s exports rebound, easing slowdown concerns', url:'https://www.reuters.com/', summary:'Chinese trade data surprises to the upside.'},
-    {title:'ECB signals end to rate hikes in 2025', url:'https://www.cnbc.com/', summary:'European Central Bank hints at policy pause.'},
-    {title:'AI stocks lead tech sector gains', url:'https://www.nasdaq.com/', summary:'Artificial intelligence companies outperform broader market.'},
-    {title:'Gold demand rises as investors seek safety', url:'https://www.kitco.com/', summary:'Precious metals attract inflows amid market volatility.'}
+        {title:'Global stocks edge higher as inflation fears ease', url:'https://www.ft.com/', summary:'Markets rally on signs of cooling inflation in US and Europe.'},
+        {title:'US job growth beats expectations in July', url:'https://www.wsj.com/', summary:'Strong labor market data boosts investor confidence.'},
+        {title:'Oil prices rise amid Middle East tensions', url:'https://www.bloomberg.com/', summary:'Crude oil climbs as geopolitical risks increase.'},
+        {title:'Bitcoin surges past $44,000 on ETF optimism', url:'https://www.coindesk.com/', summary:'Crypto markets rally as ETF approval looks likely.'},
+        {title:'China’s exports rebound, easing slowdown concerns', url:'https://www.reuters.com/', summary:'Chinese trade data surprises to the upside.'},
+        {title:'ECB signals end to rate hikes in 2025', url:'https://www.cnbc.com/', summary:'European Central Bank hints at policy pause.'},
+        {title:'AI stocks lead tech sector gains', url:'https://www.nasdaq.com/', summary:'Artificial intelligence companies outperform broader market.'},
+        {title:'Gold demand rises as investors seek safety', url:'https://www.kitco.com/', summary:'Precious metals attract inflows amid market volatility.'}
     ];
     // 3. Quick Finance Facts (educational, surprising, for students)
     const financeFactsData = [
-    'The S&P 500 covers about 80% of the US stock market’s value.',
-    'Compound interest can turn $100/month into $20,000+ in 10 years at 8%.',
-    'The first ETF launched in 1993; now there are over 8,000 worldwide.',
-    'Bitcoin’s supply is capped at 21 million coins.',
-    'A diversified portfolio can reduce risk without sacrificing returns.',
-    'The “Rule of 72” estimates how long it takes to double your money: 72 ÷ interest rate.',
-    'The world’s largest asset manager, BlackRock, oversees over $10 trillion.',
-    'The NYSE is the world’s largest stock exchange by market cap.',
-    'Mutual funds allow investors to pool money for diversification.',
-    'The US dollar is the most traded currency globally.'
+        'The S&P 500 covers about 80% of the US stock market’s value.',
+        'Compound interest can turn $100/month into $20,000+ in 10 years at 8%.',
+        'The first ETF launched in 1993; now there are over 8,000 worldwide.',
+        'Bitcoin’s supply is capped at 21 million coins.',
+        'A diversified portfolio can reduce risk without sacrificing returns.',
+        'The “Rule of 72” estimates how long it takes to double your money: 72 ÷ interest rate.',
+        'The world’s largest asset manager, BlackRock, oversees over $10 trillion.',
+        'The NYSE is the world’s largest stock exchange by market cap.',
+        'Mutual funds allow investors to pool money for diversification.',
+        'The US dollar is the most traded currency globally.'
     ];
-    // --- Swipeable/Auto-Rotating UI Logic ---
+
+    // --- Swipeable/Auto-Rotating UI Logic with Touch Support ---
     function renderSwipeableList(container, data, renderFn, navIdPrefix) {
         let idx = 0;
+        let autoRotate;
+        // Remove any previous navWrap to avoid duplicate controls on mobile re-renders
+        if (container.parentNode && container.parentNode.classList && container.parentNode.classList.contains('swipeable-list-wrap')) {
+            container.parentNode.parentNode.replaceChild(container, container.parentNode);
+            container.style.display = '';
+        }
         function update(activeIdx) {
             container.innerHTML = '';
             const wrap = document.createElement('div');
@@ -854,10 +1179,28 @@
         // Insert navWrap before container's parent
         container.parentNode.insertBefore(navWrap, container);
         container.style.display = 'none';
+        // Touch/Swipe support for mobile
+        let startX = null;
+        let threshold = 30; // px
+        navWrap.addEventListener('touchstart', function(e) {
+            if (e.touches.length === 1) startX = e.touches[0].clientX;
+        });
+        navWrap.addEventListener('touchmove', function(e) {
+            if (startX !== null && e.touches.length === 1) {
+                let dx = e.touches[0].clientX - startX;
+                if (Math.abs(dx) > threshold) {
+                    nav(dx > 0 ? -1 : 1);
+                    startX = null;
+                }
+            }
+        });
+        navWrap.addEventListener('touchend', function() { startX = null; });
         // Auto-rotate
-        setInterval(()=>{ nav(1); }, 4000);
+        if (autoRotate) clearInterval(autoRotate);
+        autoRotate = setInterval(()=>{ nav(1); }, 4000);
         update(idx);
     }
+
     // --- Render Market Snapshot, Trending News, and Quick Finance Facts together ---
     document.addEventListener('DOMContentLoaded', function() {
         // Market Snapshot
@@ -885,6 +1228,34 @@
                 <span style='font-size:1.08em;'>${f}</span>
             `, 'fact');
         }
+        // --- AI Chatbox FAB toggle for mobile ---
+        const fab = document.getElementById('ai-fab');
+        const chatbox = document.getElementById('ai-chatbox');
+        function checkFab() {
+            if(window.innerWidth <= 700) {
+                fab.style.display = 'flex';
+                chatbox.style.display = 'none';
+            } else {
+                fab.style.display = 'none';
+                chatbox.style.display = 'flex';
+            }
+        }
+        checkFab();
+        window.addEventListener('resize', checkFab);
+        fab.addEventListener('click', function() {
+            const expanded = fab.getAttribute('aria-expanded') === 'true';
+            fab.setAttribute('aria-expanded', !expanded);
+            chatbox.style.display = expanded ? 'none' : 'flex';
+        });
+        // Ensure chatbox closes on outside tap (mobile)
+        document.addEventListener('touchstart', function(e) {
+            if(window.innerWidth <= 700 && chatbox.style.display === 'flex') {
+                if (!chatbox.contains(e.target) && !fab.contains(e.target)) {
+                    chatbox.style.display = 'none';
+                    fab.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
     });
     </script>
     <script>
@@ -897,11 +1268,20 @@
             let pos = 0;
             let hue = 210; // Start with a blueish hue
             function animateLogo() {
-                // Move logo
-                const navRect = nav.getBoundingClientRect();
-                const logoRect = logo.getBoundingClientRect();
-                const parentRect = logo.parentElement.getBoundingClientRect();
-                const max = navRect.left - parentRect.left - logoRect.width - 16;
+                // On mobile, restrict movement to available space
+                let max = 0;
+                if (window.innerWidth <= 700) {
+                    // Give logo some room, but not to overlap nav
+                    const parentRect = logo.parentElement.getBoundingClientRect();
+                    const navRect = nav.getBoundingClientRect();
+                    const logoRect = logo.getBoundingClientRect();
+                    max = Math.max(10, navRect.left - parentRect.left - logoRect.width - 8);
+                } else {
+                    const navRect = nav.getBoundingClientRect();
+                    const logoRect = logo.getBoundingClientRect();
+                    const parentRect = logo.parentElement.getBoundingClientRect();
+                    max = navRect.left - parentRect.left - logoRect.width - 16;
+                }
                 pos += direction * 2;
                 if (pos >= max) { pos = max; direction = -1; }
                 if (pos <= 0) { pos = 0; direction = 1; }
