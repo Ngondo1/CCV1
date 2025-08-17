@@ -6,6 +6,244 @@
     <title>CAMPUS CAPITAL | Strathmore Student-Run Fund</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* --- Deep, Intuitive Mobile-First CSS Best Practices (2025) --- */
+        @media (max-width: 700px) {
+            html, body {
+                padding-bottom: env(safe-area-inset-bottom, 70px);
+                background: var(--bg);
+            }
+            body {
+                font-size: clamp(15px, 4vw, 18px);
+                line-height: 1.7;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .main-grid {
+                flex-direction: column !important;
+                min-width: 100vw;
+                max-width: 100vw;
+                width: 100vw;
+                padding: 0 0 env(safe-area-inset-bottom, 70px) 0;
+                background: var(--bg);
+            }
+            .side {
+                min-width: 100vw !important;
+                max-width: 100vw !important;
+                width: 100vw !important;
+                flex-direction: row !important;
+                gap: 12px !important;
+                overflow-x: auto !important;
+                overflow-y: visible !important;
+                padding: 0 0 8px 0 !important;
+                margin-bottom: 0 !important;
+                background: none;
+                box-shadow: none;
+                scrollbar-width: thin;
+                -webkit-overflow-scrolling: touch;
+            }
+            .sidebar-card {
+                min-width: 240px;
+                max-width: 90vw;
+                flex: 0 0 auto;
+                margin-bottom: 0;
+                font-size: 1em;
+                box-sizing: border-box;
+                border-radius: 16px;
+                box-shadow: 0 4px 16px rgba(10,25,47,0.13);
+                background: rgba(33,38,45,0.92);
+                margin-right: 10px;
+                margin-left: 0;
+                padding: 18px 14px 18px 16px;
+            }
+            .sidebar-card:last-child {
+                margin-right: 0;
+            }
+            .center {
+                margin-top: 0 !important;
+                padding: 0 2vw 0 2vw !important;
+                min-width: 100vw !important;
+                max-width: 100vw !important;
+                width: 100vw !important;
+            }
+            section.card, .glass, .card.hero {
+                border-radius: 16px !important;
+                box-shadow: 0 4px 16px rgba(10,25,47,0.13) !important;
+                margin-bottom: 22px !important;
+                padding: 18px 4vw 18px 4vw !important;
+                background: rgba(33,38,45,0.97) !important;
+            }
+            h1, h2, h3 {
+                font-size: 1.18em !important;
+                margin-bottom: 10px !important;
+                margin-top: 0 !important;
+                letter-spacing: 0.01em;
+            }
+            .goals-list {
+                grid-template-columns: 1fr !important;
+                gap: 14px !important;
+            }
+            .goal-item {
+                border-radius: 14px !important;
+                box-shadow: 0 2px 8px rgba(10,25,47,0.10) !important;
+                padding: 14px 10px 12px 10px !important;
+                font-size: 1em !important;
+            }
+            .ai-chatbox {
+                width: 98vw !important;
+                right: 1vw !important;
+                left: 1vw !important;
+                bottom: 10px !important;
+                max-width: 99vw !important;
+                min-width: unset !important;
+                font-size: 1em !important;
+                border-radius: 14px !important;
+                box-shadow: 0 4px 16px rgba(10,25,47,0.13) !important;
+            }
+            .ai-chatbox input, .ai-chatbox button {
+                min-height: 48px !important;
+                font-size: 1em !important;
+                border-radius: 10px !important;
+            }
+            .ai-chatbox button {
+                min-width: 48px !important;
+                font-size: 1em !important;
+            }
+            nav a {
+                min-width: 44px;
+                min-height: 44px;
+                font-size: 1em !important;
+                border-radius: 8px !important;
+                padding: 8px 12px !important;
+            }
+            input, select, textarea, button {
+                min-height: 48px !important;
+                font-size: 1em !important;
+                border-radius: 10px !important;
+            }
+            #ai-demos form, #ai-demos #finance-results {
+                border-radius: 14px !important;
+                box-shadow: 0 2px 8px rgba(10,25,47,0.10) !important;
+                padding: 12px 2vw 10px 2vw !important;
+            }
+            #ai-demos form label {
+                font-size: 1em !important;
+                margin-bottom: 6px !important;
+            }
+            #ai-demos form input[type="number"],
+            #ai-demos form input[type="text"] {
+                font-size: 1em !important;
+                border-radius: 10px !important;
+                min-height: 48px !important;
+            }
+            #ai-demos form button[type="submit"] {
+                font-size: 1em !important;
+                border-radius: 10px !important;
+                min-height: 48px !important;
+                min-width: 48px !important;
+            }
+            table, th, td {
+                font-size: 1em !important;
+                border-radius: 8px !important;
+                background: rgba(33,38,45,0.97) !important;
+            }
+            .muted {
+                font-size: 1em !important;
+            }
+            .tag {
+                font-size: 0.95em !important;
+                border-radius: 8px !important;
+                padding: 3px 12px !important;
+            }
+            img, video, iframe {
+                border-radius: 12px !important;
+                box-shadow: 0 2px 8px rgba(10,25,47,0.10) !important;
+                max-width: 96vw !important;
+                margin: 0 auto 10px auto !important;
+            }
+            /* Visual separation for sections */
+            section.card:not(:last-child) {
+                margin-bottom: 28px !important;
+            }
+            /* Prevent accidental horizontal scroll */
+            html, body {
+                overflow-x: hidden !important;
+            }
+        }
+        /* --- Sidebars stay visually on the side on mobile --- */
+        @media (max-width: 1100px) {
+            .main-grid {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 0 !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                min-height: 100vh;
+                position: relative;
+            }
+            .side {
+                display: flex !important;
+                flex-direction: column !important;
+                min-width: 220px !important;
+                max-width: 260px !important;
+                width: 32vw !important;
+                background: linear-gradient(90deg, var(--bg) 90%, transparent);
+                box-shadow: 2px 0 12px rgba(10,25,47,0.10);
+                z-index: 2;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow-y: auto;
+                scrollbar-width: thin;
+            }
+            .side:last-of-type {
+                background: linear-gradient(-90deg, var(--bg) 90%, transparent);
+                box-shadow: -2px 0 12px rgba(10,25,47,0.10);
+            }
+            .center {
+                min-width: 320px !important;
+                max-width: 100vw !important;
+                flex: 1 1 0%;
+                margin-top: 0 !important;
+                padding: 0 2vw;
+                overflow-y: auto;
+                z-index: 1;
+            }
+            body, html {
+                overflow-x: hidden !important;
+            }
+        }
+        @media (max-width: 700px) {
+            .main-grid {
+                min-width: 100vw !important;
+                max-width: 100vw !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                flex-wrap: nowrap !important;
+            }
+            .side {
+                min-width: 180px !important;
+                max-width: 220px !important;
+                width: 38vw !important;
+                height: 100vh !important;
+                position: sticky;
+                top: 0;
+                overflow-y: auto;
+                box-shadow: 2px 0 12px rgba(10,25,47,0.10);
+            }
+            .side:last-of-type {
+                box-shadow: -2px 0 12px rgba(10,25,47,0.10);
+            }
+            .center {
+                min-width: 260px !important;
+                max-width: 100vw !important;
+                flex: 1 1 0%;
+                padding: 0 2vw;
+                overflow-y: auto;
+            }
+        }
         /* --- Header Mobile Decongestion --- */
         @media (max-width: 700px) {
             header {
@@ -1268,14 +1506,12 @@
             let pos = 0;
             let hue = 210; // Start with a blueish hue
             function animateLogo() {
-                // On mobile, restrict movement to available space
                 let max = 0;
                 if (window.innerWidth <= 700) {
-                    // Give logo some room, but not to overlap nav
-                    const parentRect = logo.parentElement.getBoundingClientRect();
-                    const navRect = nav.getBoundingClientRect();
+                    // On mobile, let logo move across the full header width (not just up to nav)
+                    const headerRect = logo.parentElement.getBoundingClientRect();
                     const logoRect = logo.getBoundingClientRect();
-                    max = Math.max(10, navRect.left - parentRect.left - logoRect.width - 8);
+                    max = Math.max(10, headerRect.width - logoRect.width - 10);
                 } else {
                     const navRect = nav.getBoundingClientRect();
                     const logoRect = logo.getBoundingClientRect();
